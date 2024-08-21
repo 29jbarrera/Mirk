@@ -5,7 +5,9 @@
 Aplicación principal
 
 ```bash
-nx serve app
+Iniciar proyecto
+Desde nx console en app serve development
+'nx serve app'
 ```
 
 Generar nueva página, sólo hay que modificar los parametros `--name` y `--directory=`

@@ -1,0 +1,122 @@
+<div class="flex flex-column gap-4 p-4">
+  <h1 class="text-xl font-semibold">Mensajes</h1>
+
+  <!-- Tarjeta -->
+  <p-card>
+    <div class="flex flex-row align-items-center gap-3 p-4">
+      <img src="" alt="" srcset="" class="flex-none" />
+      <div class="flex flex-column flex-grow-1">
+        <p>
+          <strong>Mensajes</strong>
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus
+          blanditiis itaque debitis consequuntur aspernatur veritatis expedita
+          sapiente quidem impedit a doloribus cumque error harum, cupiditate
+          saepe vel maiores eligendi id!
+        </p>
+      </div>
+
+      <p-button label="Cerrar" styleClass="flex-none" />
+    </div>
+  </p-card>
+  <!-- Selector  -->
+  <div class="flex flex-row">
+    <p-button
+      label="No leídos"
+      [text]="section_selected !== 'non-read'"
+      (click)="select_section('non-read')"
+    />
+    <p-button
+      label="Todos"
+      [text]="section_selected !== 'all'"
+      (click)="select_section('all')"
+    />
+  </div>
+
+  <!-- Table -->
+
+  <div class="flex-column surface-0 p-4 custom-border-component border-round">
+    <div class="flex px-3 py-2 justify-content-between align-items-center">
+      <div class="flex">
+        <p-dropdown [options]="" optionLabel="label" placeholder="Referencia" />
+        <p-iconField iconPosition="right">
+          <p-inputIcon styleClass="pi pi-search" (click)="filterMessages()" class="cursor-pointer"  />
+          <input type="text" pInputText placeholder="Buscar por referencia"[(ngModel)]="search_term" />
+        </p-iconField>
+      </div>
+
+      <div class="flex gap-3">
+        <p-dropdown
+          [options]="rowsPerPageOptions"
+          optionLabel="label"
+          placeholder="{{ rows }}"
+          [(ngModel)]="rows"
+          (onChange)="updateRows($event)"
+        />
+        <div>
+          <p-button
+            type="button"
+            icon="pi pi-chevron-left"
+            styleClass="p-button-text"
+            (click)="previousPage(dt2)"
+          />
+          <p-button
+            type="button"
+            icon="pi pi-chevron-right"
+            styleClass="p-button-text"
+            (click)="nextPage(dt2)"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- FILTER -->
+    <km-messages-filter></km-messages-filter>
+    <!-- TABLE -->
+
+    <p-table
+      #dt2
+      [value]="filtered_messages"
+      styleClass="p-datatable-sm"
+      [(selection)]="selected_messages"
+      dataKey="id"
+      [tableStyle]="{'min-width': '50rem'}"
+      [paginator]="true"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="{first} - {last} de {totalRecords} resultados"
+      [rows]="rows"
+      [rowsPerPageOptions]="[10, 25, 50, 100]"
+      (onPage)="onPageChange($event)"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 4rem"><p-tableHeaderCheckbox /></th>
+          <th>Participantes</th>
+          <th>Tema</th>
+
+          <th pSortableColumn="metadata.last_message_date">
+            Fecha último mensaje
+            <p-sortIcon field="metadata.last_message_date" />
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-message>
+        <tr>
+          <td>
+            <p-tableCheckbox [value]="message" />
+          </td>
+          <td>{{getParticipantsNames(message)}}</td>
+          <td>
+            <p-tag value="Pedido" />
+
+            {{getEntityName(message)}} {{getTopic(message)}}
+          </td>
+          <td>
+            {{message.metadata.last_message_date | date:'dd/MM/yyyy HH:mm'}}
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

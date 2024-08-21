@@ -1,0 +1,166 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'primeng/resources/themes/lara-light-blue/theme.css';
+@import 'primeng/resources/primeng.css';
+
+@import 'primeflex/primeflex.css';
+@import 'primeicons/primeicons.css';
+
+// RESET CSS
+// ----------------------------------------
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow: auto;
+  min-height: 100dvh;
+}
+
+* {
+  min-width: 0;
+  font: inherit;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+// ----------------------------------------
+
+@mixin item-menu-selected {
+  background-color: #e2edff9d;
+  color: #0031b0 !important;
+  span,
+  i {
+    font-weight: bold !important;
+  }
+}
+
+@mixin item-submenu-selected {
+  background-color: #e2edff;
+  color: #0031b0 !important;
+  span {
+    font-weight: bold !important;
+  }
+}
+
+@mixin common-item-menu {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 16px;
+  border-radius: 5px;
+  color: white;
+  margin-bottom: 8px;
+  font-size: 14px !important;
+}
+
+@mixin item-menu {
+  @include common-item-menu();
+
+  &:hover {
+    @include item-menu-selected;
+    transition-duration: 150ms;
+    transition-property: background-color, color;
+  }
+
+  img {
+    width: 18px;
+    margin-right: 8px;
+  }
+}
+
+@mixin subitem-menu {
+  @include common-item-menu();
+
+  &:hover {
+    @include item-submenu-selected();
+    transition-duration: 350ms;
+    transition-property: background-color, color;
+  }
+
+  span {
+    margin-left: 24px;
+  }
+}
+
+// Fondo Menu
+.km-bg-mirakl {
+  background-color: #03182f;
+}
+
+// Item seleccionado del menu
+.km-menu-mirakl-item-selected {
+  @include item-menu-selected();
+}
+
+// Item seleccionado del submenu
+.km-submenu-mirakl-item-selected {
+  @include item-submenu-selected();
+}
+
+// Items del menu
+.km-item-menu {
+  @include item-menu();
+}
+
+// Subitems del memu
+.km-subitem-menu {
+  @include subitem-menu();
+}
+
+// Separadores del logo y del menu
+.menu-logo-separator {
+  width: 100%;
+  border: 1px solid #1e3044;
+}
+
+.menu-separator {
+  border: 1px solid #1e3044;
+  margin-top: 20px;
+}
+
+.menu-button-close {
+  position: absolute;
+  left: 290px;
+  top: 5px;
+  background: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  cursor: pointer;
+  i {
+    font-size: 14px;
+  }
+
+  &:hover {
+    i {
+      font-size: 16px;
+    }
+  }
+}
+
+.p-paginator-right-content {
+  margin-left: 0 !important;
+}

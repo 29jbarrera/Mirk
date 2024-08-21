@@ -1,0 +1,112 @@
+<div
+  class="flex-column p-3 border-round surface-0 custom-border-component"
+>
+  <h3 class="font-semibold text-lg mb-5">Filtrar</h3>
+
+  <div class="flex flex-column p-1 gap-2 mb-2">
+    <label for="username">Id. del pedido</label>
+    <input
+      pInputText
+      id=""
+      aria-describedby="username-help"
+      [(ngModel)]="id"
+    />
+  </div>
+  <div class="flex flex-column p-1 gap-2 mb-2">
+    <label for="last name">Apellido del cliente</label>
+    <input
+      pInputText
+      id=""
+      aria-describedby="last name-help"
+      [(ngModel)]="lastName"
+    />
+  </div>
+  <div class="flex flex-column p-1 gap-2 mb-2">
+    <label for="username">Pedidos</label>
+    <p-calendar
+      [(ngModel)]="date1"
+      [iconDisplay]="'input'"
+      [showIcon]="true"
+      inputId="icondisplay"
+      placeholder="del"
+      class="p-fluid"
+      dateFormat="dd/mm/yy"
+    />
+    <p-calendar
+      [(ngModel)]="date2"
+      [iconDisplay]="'input'"
+      [showIcon]="true"
+      inputId="icondisplay"
+      placeholder="al"
+      class="p-fluid"
+      dateFormat="dd/mm/yy"
+    />
+  </div>
+  <div class="flex flex-column p-1 gap-2 mb-2">
+    <label for="username">Importe del pedido</label>
+    <div class="flex gap-3">
+      <p-inputNumber
+      [(ngModel)]="import1"
+      mode="currency"
+      inputId="currency-germany"
+      currency="EUR"
+      locale="de-DE"
+      placeholder="de"
+      class="p-fluid"
+    />
+    <p-inputNumber
+      [(ngModel)]="import2"
+      mode="currency"
+      inputId="currency-germany"
+      currency="EUR"
+      locale="de-DE"
+      placeholder="a"
+      class="p-fluid"
+    />
+    </div>
+  </div>
+  <div class="flex flex-column p-1 gap-2 mb-2">
+    <label for="username">Estado</label>
+    <p-dropdown
+      [(ngModel)]="state"
+      optionLabel="name"
+      placeholder="Todos"
+      class="p-fluid"
+
+    />
+  </div>
+  <div class="flex flex-column p-1 gap-2 mb-2">
+    <label for="username">Pedidos con incidencias</label>
+    <p-dropdown
+      [(ngModel)]="ordersIncidences"
+      optionLabel="name"
+      placeholder="Todos"
+      class="p-fluid"
+    />
+  </div>
+  <div class="flex flex-column p-1 gap-2 mb-2">
+    <label for="username">Pedidos con reembolsos</label>
+    <p-dropdown
+      [(ngModel)]="ordersRefunds"
+      optionLabel="name"
+      placeholder="Todos"
+      class="p-fluid"
+    />
+  </div>
+  <div class="flex flex-column p-1 gap-2 mb-2">
+    <label for="username">Método de envío</label>
+    <input pInputText id="" aria-describedby="" [(ngModel)]="shippingMethod" />
+  </div>
+  <div class="flex flex-column p-1 gap-2 my-2">
+    <p-button
+            label="Limpiar filtros"
+            [text]="true"
+            [raised]="true"
+            [plain]="true"
+            icon="pi pi-times"
+            iconPos="left"
+            class="font-semibold justify-content-center m-auto"
+            (click)="cleanfilters()"
+          />
+  </div>
+</div>

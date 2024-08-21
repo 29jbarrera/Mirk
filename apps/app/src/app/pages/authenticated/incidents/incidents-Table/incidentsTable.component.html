@@ -1,0 +1,109 @@
+<div
+  class="flex-column w-full mt-4 surface-0 border-round custom-border-component"
+>
+  <div class="flex p-4 justify-content-between align-items-center">
+    <div class="search-container">
+      <p-iconField iconPosition="right">
+        <p-inputIcon styleClass="pi pi-search" (click)="filterProducts()" class="cursor-pointer" />
+        <input
+          type="text"
+          pInputText
+          placeholder="Buscar por número de pedido"
+          [(ngModel)]="search_term"
+        />
+      </p-iconField>
+    </div>
+
+    <div class="flex gap-3">
+      <p-button label="Exportar" icon="pi pi-download" />
+      <p-dropdown
+        [options]="rowsPerPageOptions"
+        optionLabel="label"
+        placeholder="{{ rows }}"
+        [(ngModel)]="rows"
+        (onChange)="updateRows($event)"
+      />
+      <div>
+        <p-button
+          type="button"
+          icon="pi pi-chevron-left"
+          [disabled]=""
+          styleClass="p-button-text"
+          (click)="previousPage(dt2)"
+        />
+        <p-button
+          type="button"
+          icon="pi pi-chevron-right"
+          [disabled]=""
+          styleClass="p-button-text"
+          (click)="nextPage(dt2)"
+        />
+      </div>
+    </div>
+  </div>
+
+  <km-incidents-filter></km-incidents-filter>
+
+  <div class="w-full px-3 justify-content-between">
+    <p-table
+      #dt2
+      [value]="filtered_products"
+      [paginator]="true"
+      [showCurrentPageReport]="true"
+      styleClass="p-datatable-sm"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      currentPageReportTemplate="{first} - {last} de {totalRecords} resultados"
+      [rows]="rows"
+      [rowsPerPageOptions]="[10, 25, 50, 100]"
+      (onPage)="onPageChange($event)"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 4rem"><p-tableHeaderCheckbox /></th>
+          <th pSortableColumn="incidence">
+            Incidencia abierta <p-sortIcon field="incidence" />
+          </th>
+          <th pSortableColumn="order">Pedido <p-sortIcon field="order" /></th>
+          <th pSortableColumn="product">
+            Producto <p-sortIcon field="product" />
+          </th>
+          <th pSortableColumn="lastAction">
+            Última acción <p-sortIcon field="lastAction" />
+          </th>
+          <th>Estado de la incidencia</th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-product>
+        <tr>
+          <td>
+            <p-tableCheckbox [value]="product" />
+          </td>
+          <td>{{ product.incidence }}</td>
+          <td>{{ product.order }}</td>
+          <td>{{ product.product }}</td>
+          <td>{{ product.lastAction }}</td>
+          <td>
+            <p-tag severity="warning" [value]="product.incidentStatus"></p-tag>
+          </td>
+          <td class="p-1">
+            <p-button
+              [raised]="true"
+              [text]="true"
+              label="2"
+              severity="secondary"
+              class="font-bold"
+              (click)="redirectToMessagesPage('1')"
+              ><img
+                class="p-button-icon pi pi-envelope icon-envelope mr-2 ml-auto"
+                width="22"
+                height="22"
+                src="https://img.icons8.com/emoji/48/envelope-.png"
+                alt="envelope-"
+            /></p-button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

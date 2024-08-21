@@ -1,0 +1,221 @@
+<div class="flex-colum w-full p-4">
+  <div class="flex justify-content-between mb-6">
+    <h1 class="text-xl font-semibold">Ofertas</h1>
+    <p-button label="Añadir una oferta" icon="pi pi-plus" />
+  </div>
+
+  <div class="flex gap-4">
+    <div class="flex-colum w-4 border-round">
+      <div class="flex-colum surface-0 custom-border-component border-round">
+        <p-button
+          class="p-fluid"
+          (click)="select_section('ofertas')"
+          [text]="section_selected !== 'ofertas'"
+        >
+          <ng-template pTemplate="content">
+            <div class="flex align-items-center justify-content-between w-full">
+              <span class="flex-grow-1 text-left">Ofertas</span>
+              <i class="pi pi-angle-right"></i>
+            </div>
+          </ng-template>
+        </p-button>
+
+        <p-button
+          [text]="section_selected !== 'ofertas-pendientes'"
+          (click)="select_section('ofertas-pendientes')"
+          class="p-fluid"
+          ><ng-template pTemplate="content">
+            <div class="flex align-items-center justify-content-between w-full">
+              <span class="flex-grow-1 text-left">Ofertas pendientes</span>
+              <i class="pi pi-angle-right"></i>
+            </div>
+          </ng-template>
+        </p-button>
+
+        <p-button
+          [text]="section_selected !== 'ofertas-favoritas'"
+          (click)="select_section('ofertas-favoritas')"
+          class="p-fluid"
+        >
+          <ng-template pTemplate="content">
+            <div class="flex align-items-center justify-content-between w-full">
+              <span class="flex-grow-1 text-left">Ofertas favoritas</span>
+              <i class="pi pi-angle-right"></i>
+            </div>
+          </ng-template>
+        </p-button>
+      </div>
+      <div
+        class="flex-colum surface-0 mt-4 border-round custom-border-component font-semibold"
+      >
+        <div
+          class="flex align-items-center p-5 text-xl h-6rem custom-border-bottom"
+        >
+          <h3>Filtrar</h3>
+        </div>
+        <div class="p-3 custom-border-bottom">
+          <p-button
+            label="Oferta"
+            [text]="true"
+            [plain]="true"
+            icon="pi pi-angle-right"
+            iconPos="right"
+            class="p-fluid"
+            ><ng-template pTemplate="content">
+              <div
+                class="flex align-items-center justify-content-between w-full"
+              >
+                <span class="flex-grow-1 text-left">Oferta</span>
+              </div>
+            </ng-template>
+          </p-button>
+        </div>
+        <div class="p-3 custom-border-bottom">
+          <p-button
+            label="Producto"
+            [text]="true"
+            [plain]="true"
+            icon="pi pi-angle-right"
+            iconPos="right"
+            class="p-fluid"
+            ><ng-template pTemplate="content">
+              <div
+                class="flex align-items-center justify-content-between w-full"
+              >
+                <span class="flex-grow-1 text-left">Producto</span>
+              </div>
+            </ng-template>
+          </p-button>
+        </div>
+        <div class="p-3 mb-3">
+          <p-button
+            label="Catálogo"
+            [text]="true"
+            [plain]="true"
+            icon="pi pi-angle-right"
+            iconPos="right"
+            class="p-fluid"
+            ><ng-template pTemplate="content">
+              <div
+                class="flex align-items-center justify-content-between w-full"
+              >
+                <span class="flex-grow-1 text-left">Catálogo</span>
+              </div>
+            </ng-template>
+          </p-button>
+        </div>
+        <div class="flex p-3 justify-content-center gap-3">
+          <p-button
+            label="Borrar"
+            [text]="true"
+            [raised]="true"
+            [plain]="true"
+            icon="pi pi-times"
+            iconPos="left"
+            class="font-semibold"
+          />
+          <p-button label="Actualizar" icon="pi pi-refresh" iconPos="left" />
+        </div>
+      </div>
+    </div>
+
+    <!-- TABLE -->
+
+    <!-- TODO: PAGINADO TOP DE TABLA PONER PEGADO A LA DERECHA -->
+    <div
+      class="w-full justify-content-center surface-0 p-3 custom-border-component border-round"
+    >
+      <p-table
+        [value]="offers"
+        [paginator]="true"
+        paginatorPosition="both"
+        [rows]="10"
+        [first]="0"
+        [showCurrentPageReport]="true"
+        currentPageReportTemplate="{first} - {last} de {totalRecords} resultados"
+        [rowsPerPageOptions]="[10, 25, 50, 100]"
+        [(selection)]="selectedProducts"
+        dataKey="suk"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 4rem"><p-tableHeaderCheckbox /></th>
+            <th>Producto</th>
+            <th>SKU de oferta</th>
+            <th>Condición</th>
+            <th>Precios</th>
+            <th>Cant.</th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-offers>
+          <tr>
+            <td>
+              <p-tableCheckbox [value]="offers" />
+            </td>
+            <td>
+              <div class="flex gap-3" *ngFor="let product of offers.product">
+                <img [src]="product.img" width="50" height="50" />
+                <div>
+                  <strong>{{ product.title }}</strong>
+                  <p>{{ product.description }}</p>
+                </div>
+              </div>
+            </td>
+            <td style="color: #3b82f6">{{ offers.suk }}</td>
+
+            <td>
+              <p-dropdown
+                [options]="status"
+                [(ngModel)]="offers.condition"
+                optionLabel="status"
+                placeholder="Condition"
+                [style]="{'width': '100%'}"
+              ></p-dropdown>
+            </td>
+            <td>
+              <div class="flex align-items-center gap-2">
+                <div class="flex text-900">Valor predeterminado</div>
+                <div>
+                  <p-inputGroup>
+                    <input
+                      type="text"
+                      pInputText
+                      [(ngModel)]="offers.price"
+                      class="small-input"
+                    />
+                    <p-inputGroupAddon>$</p-inputGroupAddon>
+                  </p-inputGroup>
+                </div>
+              </div>
+            </td>
+            <td>
+              <p-inputGroup>
+                <input
+                  type="text"
+                  pInputText
+                  [(ngModel)]="offers.quantity"
+                  class="small-input"
+                />
+              </p-inputGroup>
+            </td>
+            <td><i class="pi pi-ellipsis-v"></i></td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft"></ng-template>
+        <ng-template pTemplate="paginatorright">
+          <div class="flex gap-2">
+            <p-splitButton
+              icon="pi pi-download"
+              [model]="items"
+            ></p-splitButton>
+            <p-splitButton
+              icon="pi pi-file-import"
+              [model]="items"
+            ></p-splitButton>
+          </div>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

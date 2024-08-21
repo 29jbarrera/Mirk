@@ -1,0 +1,101 @@
+<a class="flex mt-4 ml-4 text-xs rutemessage" href="/authenticated/messages">
+  ← Volver a los mensajes</a
+>
+<div class="flex justify-content-between px-5">
+  <h1 class="text-xl font-semibold">Conversación</h1>
+  <p-button label="Iniciar una conversación" icon="pi pi-comment" />
+</div>
+
+<div
+  class="flex surface-0 border-round p-4 gap-5 mt-5 w-8 m-auto justify-content-between custom-border-component"
+>
+  <div class="flex-column justify-content-between align-items-center w-4">
+    <div class="flex align-items-center">
+      <p class="font-bold">Cliente</p>
+      <img
+        class="p-button-icon pi pi-envelope icon-envelope mr-2 ml-auto"
+        width="35"
+        height="35"
+        src="https://img.icons8.com/emoji/48/envelope-.png"
+        alt="envelope-"
+      />
+    </div>
+    <p class="mt-0">Súarez gonzales Manuel jesús</p>
+  </div>
+  <div class="flex-column w-4 pl-4 custom-border-left">
+    <p class="font-bold">N.º de pedido</p>
+    <p style="color: #3B82F6" class="font-semibold">598794938-A</p>
+  </div>
+  <div class="flex-column w-4 pl-4 custom-border-left">
+    <p class="font-bold">Estado</p>
+    <p-tag severity="secondary" value="cerrado" />
+  </div>
+</div>
+
+<div class="flex border-round py-4 gap-4 w-8 m-auto justify-content-between">
+  <div class="flex-column surface-0 border-round w-12 custom-border-component">
+    <div
+      class="flex w-full justify-content-between align-items-center py-3 px-5 custom-border-bottom"
+    >
+      <div class="line-height-1">
+        <p class="text-xl font-semibold">Quiero cancelar mi pedido</p>
+        <p class="text-xl font-semibold -mt-2">16/05/2024 13:15</p>
+        <p class="-mt-2">
+          Participantes: Espaciados (marketplace&#64;espaciados.com)
+        </p>
+      </div>
+      <div>
+        <p-button icon="pi pi-list" severity="secondary" class="button-right" />
+      </div>
+    </div>
+    <div class="flex-column">
+      <div class="flex m-auto pt-5 pb-2 justify-content-center p-">
+        <p-tag value="Hoy" />
+      </div>
+
+      <!-- Message Receive -->
+      <km-message-receive></km-message-receive>
+
+      <!-- Message Send -->
+      <km-message-send></km-message-send>
+    </div>
+  </div>
+
+  <div
+    class="flex-column w-5 p-4 surface-0 border-round custom-border-component"
+  >
+    <div class="flex-column">
+      <h3 class="text-xl font-semibold mb-2">Envio</h3>
+      <div class="flex-column pt-1">
+        <p class="font-semibold">Dirección de envío</p>
+        <p class="-mt-2">Suárez gomzales Manuel jesus</p>
+        <p class="-mt-2">CALLE HAITI</p>
+        <p class="-mt-2">bajo A Bloque 16</p>
+        <p class="-mt-2">21440 LEPE</p>
+        <p class="-mt-2">Huelva</p>
+        <p class="-mt-2">Spain</p>
+        <p class="-mt-2">Teléfono 1: 642286622</p>
+      </div>
+
+      <div class="flex-column pt-1">
+        <p class="font-semibold">Zona de envío</p>
+        <p class="-mt-2">ZONA 1 Peninsula</p>
+      </div>
+
+      <div class="flex-column pt-1">
+        <p class="font-semibold">Método de envío</p>
+        <p class="-mt-2">Envío/7-10 días laborales</p>
+      </div>
+
+      <div class="flex-column pt-1">
+        <p class="font-semibold">Fecha límite de envío</p>
+        <p class="-mt-2">15/05/2024 23:59</p>
+      </div>
+
+      <div class="flex-column pt-1">
+        <p class="font-semibold">Fecha de entrega estimada</p>
+        <p class="-mt-2">De 25/05/2024 a 30/05/2024</p>
+      </div>
+    </div>
+  </div>
+</div>

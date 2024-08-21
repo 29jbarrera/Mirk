@@ -1,0 +1,11 @@
+<a
+  *ngIf="subitem"
+  pRipple
+  (click)="go_to.emit(subitem.action)"
+  class="km-subitem-menu"
+  [routerLink]="subitem.routerLink"
+  [ngClass]="{ 'km-submenu-mirakl-item-selected ': checkRoute(subitem) }"
+>
+  <i [class]="subitem.icon"></i>
+  <span class="font-medium">{{ subitem.label }}</span>
+</a>

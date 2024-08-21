@@ -1,0 +1,58 @@
+<div class="flex-column px-3">
+  <div class="flex gap-3 text-sm align-items-center ml-3">
+    <p class="text-base">Filtar por:</p>
+    <p-dropdown
+      [options]="estados"
+      [(ngModel)]="selectedEstado"
+      optionLabel="label"
+      placeholder="Estado"
+    ></p-dropdown>
+    <p-dropdown
+      [options]="estados"
+      [(ngModel)]="selectedEstado"
+      optionLabel="label"
+      placeholder="Última acción el"
+    ></p-dropdown>
+    <p-dropdown
+      [options]="estados"
+      [(ngModel)]="selectedEstado"
+      optionLabel="label"
+      placeholder="Motivo de apertura"
+    ></p-dropdown>
+    <p-dropdown
+      [options]="estados"
+      [(ngModel)]="selectedEstado"
+      optionLabel="label"
+      placeholder="Fecha de la última acción"
+    ></p-dropdown>
+    <p-dropdown
+      [options]="estados"
+      [(ngModel)]="selectedEstado"
+      optionLabel="label"
+      placeholder="Abierto el"
+    ></p-dropdown>
+    <p-dropdown
+      [options]="estados"
+      [(ngModel)]="selectedEstado"
+      optionLabel="label"
+      placeholder="Abierto por"
+    ></p-dropdown>
+    <p-dropdown
+      [options]="estados"
+      [(ngModel)]="selectedEstado"
+      optionLabel="label"
+      placeholder="Pedido creado el"
+    ></p-dropdown>
+  </div>
+  <div class="p-3">
+    <!-- TODO:  Poner Icono a la derecha -->
+    <p-tag
+      
+    >
+      <div class="flex align-items-center gap-2 px-1">
+        <span class="text-base"> Estado: Nueva incidencia</span>
+        <i class="pi pi-times"></i>
+      </div>
+    </p-tag>
+  </div>
+</div>

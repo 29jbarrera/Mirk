@@ -1,0 +1,31 @@
+<div class="flex-colum">
+  <div class="flex">
+    <div class="flex gap-3 align-items-center">
+      <h3 class="text-lg">Transacciones</h3>
+      <p-dropdown
+        [options]="days"
+        [(ngModel)]="selectedDays"
+        optionLabel="days"
+        placeholder="Últimos 7 días"
+      />
+      <p-button
+        label="Filtros"
+        [text]="true"
+        [raised]="true"
+        [plain]="true"
+        icon="pi pi-cog"
+        iconPos="right"
+      />
+      <p-button
+        label="Revolución - Pedidos pagados"
+        [text]="true"
+        [raised]="true"
+        [plain]="true"
+      />
+      <p class="text-400">Impuestos no incluidos, gastos de envío incluidos</p>
+    </div>
+  </div>
+  <div>
+    <!-- INCLUIR GRÁFICA -->
+  </div>
+</div>

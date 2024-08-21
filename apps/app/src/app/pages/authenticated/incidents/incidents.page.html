@@ -1,0 +1,17 @@
+<div class="flex-column p-4">
+  <h1 class="font-semibold text-xl mb-6">Incidencias</h1>
+
+  <div class="flex gap-2">
+    <p-button
+      label="Abierto"
+      [text]="section_selected !== 'open'"
+      (click)="select_section('open')"
+    />
+    <p-button
+      label="Cerrado"
+      [text]="section_selected !== 'close'"
+      (click)="select_section('close')"
+    />
+  </div>
+  <km-incidents-table></km-incidents-table>
+</div>

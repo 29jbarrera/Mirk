@@ -1,0 +1,36 @@
+<!-- En caso de que esté el apartado configuración añadir separador -->
+<hr class="menu-separator" *ngIf="item.label === 'Configuración'" />
+
+<!-- Si no hay submenu -->
+<a
+  *ngIf="item && !item.submenu.length"
+  (click)="go_to.emit(item.action)"
+  pRipple
+  [ngClass]="{ 'km-menu-mirakl-item-selected': checkRoute(item) }"
+  class="km-item-menu"
+>
+  <img [src]="item.icon" />
+  <span>{{ item.label }}</span>
+  <i *ngIf="item.label === 'Ayuda'" class="pi pi-window-maximize ml-auto"></i>
+</a>
+
+<!-- Si hay submenu -->
+<a
+  *ngIf="item.submenu.length"
+  pRipple
+  class="km-item-menu"
+  (click)="deploy_menu()"
+>
+  <img [src]="item.icon" />
+  <span>{{ item.label }}</span>
+  <i class="pi pi-chevron-right ml-auto" *ngIf="!is_deployed"></i>
+  <i class="pi pi-chevron-down ml-auto" *ngIf="is_deployed"></i>
+</a>
+<ul *ngIf="is_deployed" class="list-none py-0 pl-0 pr-0 m-0 border-round">
+  <li *ngFor="let subitem of item.submenu">
+    <km-submenu-item
+      [subitem]="subitem"
+      (go_to)="go_to.emit($event)"
+    ></km-submenu-item>
+  </li>
+</ul>

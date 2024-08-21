@@ -1,0 +1,118 @@
+<div class="flex flex-column gap-4 p-4">
+  <h1 class="text-xl font-semibold">Historial de transacciones</h1>
+
+  <div class="flex gap-4 surface-0 border-round py-3 custom-border-component">
+    <km-transactions-card
+      [amount]="7005.49"
+      [description]="'Saldo pendiente'"
+      class="w-4 pl-4"
+    ></km-transactions-card>
+    <km-transactions-card
+      [amount]="1529.29"
+      [description]="'Saldo pagadero'"
+      class="w-4 pl-4 custom-border-left"
+    ></km-transactions-card>
+    <km-transactions-card
+      [amount]="80640.56"
+      [description]="'Saldo pagado'"
+      class="w-4 pl-4 custom-border-left"
+    ></km-transactions-card>
+  </div>
+
+  <div class="surface-0 p-4 custom-border-component border-round">
+    <div class="flex justify-content-between flex-wrap align-items-center">
+      <div class="flex align-items-center px-3 gap-2">
+        <p-dropdown
+          [options]="id_orders"
+          [(ngModel)]="selected_id_orders"
+          optionLabel="id"
+          placeholder="ID del pedido"
+        />
+        <p-iconField iconPosition="right">
+          <p-inputIcon styleClass="pi pi-search" (click)="filterTransactions()" class="cursor-pointer"/>
+          <input
+            type="text"
+            pInputText
+            placeholder="Buscar por número de pedido o ref"
+            style="width: 325px"
+            [(ngModel)]="search_term"
+          />
+        </p-iconField>
+      </div>
+
+      <div class="flex gap-2">
+        <p-button label="Exportar" icon="pi pi-download" />
+        <p-dropdown
+          [options]="rowsPerPageOptions"
+          optionLabel="label"
+          placeholder="{{ rows }}"
+          [(ngModel)]="rows"
+          (onChange)="updateRows($event)"
+        />
+        <p-button
+          type="button"
+          icon="pi pi-chevron-left"
+          [disabled]=""
+          styleClass="p-button-text"
+          (click)="previousPage(dt2)"
+        />
+        <p-button
+          type="button"
+          icon="pi pi-chevron-right"
+          [disabled]=""
+          styleClass="p-button-text"
+          (click)="nextPage(dt2)"
+        />
+      </div>
+    </div>
+
+    <!-- FILTER -->
+    <km-transactions-filter></km-transactions-filter>
+
+    <p-table
+      #dt2
+      [value]="filtered_transaction"
+      [paginator]="true"
+      [showCurrentPageReport]="true"
+      styleClass="p-datatable-sm"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      currentPageReportTemplate="{first} - {last} de {totalRecords} resultados"
+      [rows]="rows"
+      [rowsPerPageOptions]="[10, 25, 50, 100]"
+      (onPage)="onPageChange($event)"
+    >
+      <ng-template pTemplate="header">
+        <tr class="font-semibold">
+          <th>Creado</th>
+          <th>Recibido el</th>
+          <th>Fecha de ciclo de facturación</th>
+          <th>ID del pedido</th>
+          <th>Ref. de pedido</th>
+          <th>Factura n.º</th>
+          <th>Cant.</th>
+          <th>Descripción</th>
+          <th>Tipo</th>
+          <th>Importe</th>
+          <th>Estado del producto</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-transaction>
+        <tr>
+          <td>{{transaction.create}}</td>
+          <td>{{transaction.received_on}}</td>
+          <td>{{transaction.billing_cycle_date}}</td>
+          <td [style]="{'color':'#3B82F6'}">{{transaction.order_id}}</td>
+          <td>{{transaction.order_ref}}</td>
+          <td>{{transaction.invoice_number}}</td>
+          <td>{{transaction.quantity}}</td>
+          <td>{{transaction.description}}</td>
+          <td>{{transaction.type}}</td>
+          <td>{{transaction.import}}</td>
+          <td>
+            <p-tag value="primary" [value]="transaction.status"></p-tag>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

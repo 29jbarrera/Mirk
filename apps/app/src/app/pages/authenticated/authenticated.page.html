@@ -1,0 +1,77 @@
+<div class="min-h-screen flex relative xl:static surface-ground">
+  <!-- Menú lateral -->
+  <div
+    id="app-sidebar"
+    class="h-full flex-shrink-0 fixed left-0 top-0 z-3 select-none fadeinleft animation-duration-150"
+    style="width: 300px"
+  >
+    <div class="flex flex-column h-full km-bg-mirakl">
+      <div
+        class="flex align-items-center justify-content-center px-5 flex-shrink-0"
+      >
+        <!-- Botón cerrar menú -->
+        <div class="menu-button-close" (click)="handleMenu()">
+          <i class="pi pi-chevron-left"></i>
+        </div>
+        <!-- Logo APP -->
+        <img
+          src="/assets/images/logo-light.png"
+          alt="Logo Komandero MIRK"
+          class="py-3"
+          height="auto"
+          style="max-height: 100px"
+        />
+      </div>
+      <!-- Separador Logo -->
+      <hr class="menu-logo-separator" />
+      <!-- Componente Menú -->
+
+      <ul class="list-none p-2 m-0 overflow-y-auto">
+        <li *ngFor="let item of menu_items">
+          <km-menu-item [item]="item" (go_to)="go_to($event)"></km-menu-item>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Menu horizontal -->
+  <div class="min-h-screen flex flex-column relative flex-auto">
+    <div
+      class="flex justify-content-between align-items-center px-5 surface-0 shadow-1 fixed w-full z-2"
+      style="height: 60px"
+    >
+      <!-- Botón abrir menu -->
+      <div>
+        <a
+          *ngIf="!deployed_menu"
+          (click)="handleMenu()"
+          class="cursor-pointer"
+          pRipple
+        >
+          <i
+            class="pi pi-bars text-2xl text-700 fadeinright animation-duration-200"
+          ></i>
+        </a>
+      </div>
+      <!-- Logotipo -->
+      <div *ngIf="!deployed_menu">
+        <img
+          src="/assets/images/logo-dark.png"
+          height="auto"
+          style="max-height: 60px"
+          alt="Logo"
+          class="py-2 fadein animation-duration-150"
+        />
+      </div>
+      <!-- Panel usuario -->
+      <a *ngIf="!deployed_menu" pRipple class="cursor-pointer block text-700">
+        <i
+          class="pi pi-user text-2xl text-700 fadein animation-duration-150"
+        ></i>
+      </a>
+    </div>
+    <div class="flex flex-column flex-auto" style="padding: 5rem">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

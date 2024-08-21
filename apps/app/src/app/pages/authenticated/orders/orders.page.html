@@ -1,0 +1,16 @@
+<div class="flex w-full justify-content-between p-4">
+  <h1 class="font-semibold text-xl">Todos los pedidos</h1>
+  <p-button
+    label="Importar archivo de confirmación del envío"
+    icon="pi pi-download"
+  />
+</div>
+
+<div class="flex px-4 gap-4 mb-5 m-auto justify-content-center">
+  <div class="flex w-3">
+    <km-orders-filter ></km-orders-filter>
+  </div>
+  <div class="flex w-full">
+    <km-orders-table></km-orders-table>
+  </div>
+</div>

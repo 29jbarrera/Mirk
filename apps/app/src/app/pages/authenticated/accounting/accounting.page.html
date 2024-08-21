@@ -1,0 +1,71 @@
+<div class="flex flex-column gap-4 px-4">
+  <h1 class="font-semibold text-xl mt-5">Facturación y documentos</h1>
+
+  <!-- Selector  -->
+
+  <div class="flex flex-row">
+    <p-button
+      label="Ciclos de facturación"
+      [text]="section_selected !== 'facturacion'"
+      (click)="select_section('facturacion')"
+    />
+    <p-button
+      label="Documentos contables"
+      [text]="section_selected !== 'docContables'"
+      (click)="select_section('docContables')"
+    />
+  </div>
+
+  <!-- Tabla -->
+  <div class="flex surface-0 border-round custom-border-component">
+    <p-table
+      [value]="accounting"
+      class="w-full p-4"
+      styleClass="p-datatable-sm"
+      dataKey="code"
+      [tableStyle]="{'min-width': '50rem'}"
+      [paginator]="true"
+      [rows]="5"
+      [rowsPerPageOptions]="[5, 10, 20]"
+    >
+      <ng-template pTemplate="caption">
+        <p>
+          Esta página muestra información sobre el ciclo de facturación de
+          acuerdo con el modelo de la plataforma.
+          <a href="">Obtén más información sobre el cálculo del importe. </a>
+        </p>
+
+        <div class="flex py-3 align-items-center justify-content-between">
+          <p-dropdown
+            [options]="dates"
+            [(ngModel)]="selectedDate"
+            optionLabel="date"
+            placeholder="Fecha de creación"
+          />
+          <div class="flex gap-3">
+            <p>13 resultados</p>
+            <p-button icon="pi pi-list" />
+          </div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr class="font-semibold">
+          <th pSortableColumn="dateofcreation">
+            Fecha de creación <p-sortIcon field="dateofcreation" />
+          </th>
+          <th>Periodo del ciclo de facturación</th>
+          <th>Importe facturado</th>
+          <th>Importe pagadero</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-accounting>
+        <tr>
+          <td>{{ accounting.creation_date }}</td>
+          <td>{{ accounting.billing_cycle }}</td>
+          <td>{{ accounting.invoiced_amount }} €</td>
+          <td>{{ accounting.amount_payable }} €</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

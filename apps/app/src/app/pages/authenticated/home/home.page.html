@@ -1,0 +1,198 @@
+<div class="flex-colum">
+  <div class="flex p-4 px-4">
+    <div class="flex align-items-center gap-3 w-10">
+      <h1 class="font-semibold text-xl">Espaciados</h1>
+      <p-tag severity="success" value="Abierta" />
+      <p class="text-400">
+        Identificadores únicos:
+        <span class="font-bold">{{ uniqueId }} </span>|
+      </p>
+      <p-rating [(ngModel)]="value" [cancel]="false" />
+      <p>{{ value }}</p>
+      <p class="text-400">( {{ ratings }} calificaciones)</p>
+    </div>
+    <div class="flex w-2 align-items-center justify-content-end">
+      <p-button label="Añadir una oferta" icon="pi pi-plus" />
+    </div>
+  </div>
+
+  <div class="flex mt-5 gap-3">
+    <div class="flex-colum w-9 ml-5">
+      <div
+        class="flex yellow-100 border-round"
+        style="background-color: #fffaef; border: 1px solid #d7a576"
+      >
+        <div class="flex mt-5 ml-5">
+          <i
+            class="pi pi-exclamation-circle"
+            style="color: orange; font-size: 30px"
+          ></i>
+        </div>
+        <div class="flex-colum p-3">
+          <p class="flex font-semibold">Problemas de calidad detectados</p>
+          <p>
+            El rendimiento de la cuenta de tu tienda es inferior a lo esperado
+            Problemas los motivos siguientes:<br />
+            - Rating < 3<br />
+            - Incident rate > 20% <br />
+            Debes mejorar tu rendimiento lo antes posible.
+          </p>
+          <p-button
+            label="Ver tus estadísticas"
+            [outlined]="true"
+            severity="secondary"
+            class="font-semibold"
+          />
+        </div>
+      </div>
+
+      <div class="flex-colum pb-5">
+        <div class="flex">
+          <h3 class="font-semibold">Pago</h3>
+        </div>
+        <div class="flex justify-content-around gap-3">
+          <div
+            class="flex justify-content-between align-items-center surface-0 w-4 border-round px-4 custom-border-component"
+          >
+            <p>Saldo pendiente</p>
+            <p class="text-blue-600">10232.17 €</p>
+          </div>
+          <div
+            class="flex justify-content-between align-items-center surface-0 w-4 border-round px-4 custom-border-component"
+          >
+            <div class="flex-colum">
+              <p>Próximo pago</p>
+              <p class="text-sm">Fecha de facturación: 16/05/2024</p>
+            </div>
+            <div class="flex-colum">
+              <p class="text-blue-600 text-right">7.23 €</p>
+              <p class="text-sm text-right">Importe previsto</p>
+            </div>
+          </div>
+          <div
+            class="flex justify-content-between align-items-center surface-0 w-4 border-round px-4 custom-border-component"
+          >
+            <div class="flex-colum justify-content-between">
+              <p>Último pago</p>
+              <p class="text-sm">Fecha de facturación: 16/05/2024</p>
+            </div>
+            <div class="flex">
+              <p class="text-blue-600">2328.55 €</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GRÁFICA -->
+
+      <km-home-graphic></km-home-graphic>
+    </div>
+
+    <div class="flex-colum w-3 mr-4 custom-border-component border-round">
+      <div class="flex-colum surface-0 border-round min-h-screen">
+        <div
+          class="flex align-items-center p-3 gap-3 w-full font-semibold custom-border"
+        >
+          <img class="w-1" src="/assets/icons/camion.png" />
+          <h3>Pedidos</h3>
+        </div>
+
+        <div
+          class="flex justify-content-between px-3 py-1 text-sm align-items-center custom-border"
+        >
+          <p>39 pedidos tardíos</p>
+          <p-button
+            label="Ver"
+            [raised]="true"
+            [text]="true"
+            severity="secondary"
+            class="font-bold"
+            [routerLink]="['/authenticated/orders']"
+          />
+        </div>
+
+        <div
+          class="flex justify-content-between px-3 py-1 text-sm align-items-center custom-border"
+        >
+          <p>41 pedidos esperando envío</p>
+          <p-button
+            label="Ver"
+            [raised]="true"
+            [text]="true"
+            severity="secondary"
+            class="font-bold"
+            [routerLink]="['/authenticated/orders']"
+          />
+        </div>
+
+        <div
+          class="flex justify-content-between px-3 py-1 text-sm align-items-center custom-border"
+        >
+          <p>0 pedidos esperando aprobación</p>
+          <p-button
+            label="Ver"
+            [raised]="true"
+            [text]="true"
+            severity="secondary"
+            class="font-bold"
+            [routerLink]="['/authenticated/orders']"
+          />
+        </div>
+
+        <div
+          class="flex align-items-center p-3 gap-3 w-full custom-border font-semibold"
+        >
+          <img class="w-1" src="/assets/icons/alerta.png" />
+          <h3>Incidencias</h3>
+        </div>
+        <div
+          class="flex justify-content-between px-3 py-1 text-sm align-items-center custom-border"
+        >
+          <p>39 pedidos tardíos</p>
+          <p-button
+            label="Ver"
+            [raised]="true"
+            [text]="true"
+            severity="secondary"
+            class="font-bold"
+            [routerLink]="['/authenticated/incidents']"
+          />
+        </div>
+
+        <div
+          class="flex justify-content-between px-3 py-1 text-sm align-items-center custom-border"
+        >
+          <p>41 pedidos esperando envío</p>
+          <p-button
+            label="Ver"
+            [raised]="true"
+            [text]="true"
+            severity="secondary"
+            class="font-bold"
+            [routerLink]="['/authenticated/incidents']"
+          />
+        </div>
+
+        <div
+          class="flex align-items-center p-3 gap-3 w-full custom-border font-semibold"
+        >
+          <img class="w-1" src="/assets/icons/sobre.png" />
+          <h3>Mensajes</h3>
+        </div>
+        <div
+          class="flex justify-content-between px-3 py-1 text-sm align-items-center custom-border"
+        >
+          <p>41 pedidos esperando envío</p>
+          <p-button
+            label="Ver"
+            [raised]="true"
+            [text]="true"
+            severity="secondary"
+            class="font-bold"
+            [routerLink]="['/authenticated/messages']"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
